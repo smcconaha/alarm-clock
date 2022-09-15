@@ -35,6 +35,11 @@ function milConv (hours) {
     }
 };
 
+function amPm (hours) {
+    milHours < 12 ? hours = 'AM' : hours = 'PM';
+    return hours;
+}
+
 
 const hourSpan = document.createElement('span');
 hourSpan.textContent = milConv(milHours);
@@ -48,6 +53,10 @@ const secSpan = document.createElement('span');
 secSpan.textContent = sec;
 document.getElementById('container').appendChild(secSpan);
 
+const amPmSpan = document.createElement('span');
+amPmSpan.textContent = amPm(milHours);
+document.getElementById('container').appendChild(amPmSpan);
+
 const monSpan = document.createElement('span');
 monSpan.textContent = month;
 document.getElementById('container').appendChild(monSpan);
@@ -59,3 +68,19 @@ document.getElementById('container').appendChild(daySpan);
 const yearSpan = document.createElement('span');
 yearSpan.textContent = year;
 document.getElementById('container').appendChild(yearSpan);
+
+//Create Alarm
+const alarm = document.createElement('input');
+alarm.setAttribute('type', 'time');
+alarm.setAttribute('name', 'alarm');
+alarm.setAttribute('id', 'alarm');
+document.querySelector('label').appendChild(alarm);
+
+/*Test Alarm
+function setAlarm (time) {
+    if (document.getElementById('alarm').value !== '') {
+        alert('Alarm Set');
+    } else {
+        alert('Please set alarm');
+    }
+}; */

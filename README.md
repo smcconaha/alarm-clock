@@ -63,11 +63,15 @@ GET time from source
 
 FOR every second in a minute
     
-
 DISPLAY time
 
-WHILE alarm = set 
-    count down to time = alarm
-ENDWHILE
+FUNCTION set alarm
+    Select alarm hour
+    Select AM/PM
+    Submit alarm request
+    WHILE alarm = set 
+        count down to time = alarm
+    ENDWHILE
+END FUNCTION
     
 //END PROGRAM
