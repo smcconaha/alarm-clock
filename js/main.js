@@ -1,4 +1,5 @@
 //Defining basic time variables
+
 const date = new Date();
 const monthInd = date.getMonth();
 const milHours = date.getHours();
@@ -40,8 +41,14 @@ function amPm (hours) {
     return hours;
 }
 
+const timeSpan = document.createElement('span');
+timeSpan.textContent = `${milConv(milHours)}:${minute}:${sec} ${amPm(milHours)} ${month} ${day} ${year}`;
+document.getElementById('container').appendChild(timeSpan);
 
-const hourSpan = document.createElement('span');
+
+
+
+/*const hourSpan = document.createElement('span');
 hourSpan.textContent = milConv(milHours);
 document.getElementById('container').appendChild(hourSpan);
 
@@ -67,14 +74,20 @@ document.getElementById('container').appendChild(daySpan);
 
 const yearSpan = document.createElement('span');
 yearSpan.textContent = year;
-document.getElementById('container').appendChild(yearSpan);
+document.getElementById('container').appendChild(yearSpan);*/
+
+
 
 //Create Alarm
-const alarm = document.createElement('input');
+/*const alarm = document.createElement('input');
 alarm.setAttribute('type', 'time');
 alarm.setAttribute('name', 'alarm');
 alarm.setAttribute('id', 'alarm');
-document.querySelector('label').appendChild(alarm);
+document.querySelector('label').appendChild(alarm);*/
+
+const setTime = document.getElementById('alarmer');
+const contents = setTime.innerHTML;
+console.log(contents);
 
 /*Test Alarm
 function setAlarm (time) {
