@@ -1,14 +1,43 @@
-const date = new Date(); //create variable for Date.prototype
-const month = date.getMonth()+1; //using getXX() methods to retrieve individual values
+//Defining basic time variables
+const date = new Date();
+const monthInd = date.getMonth();
+const milHours = date.getHours();
 const day = date.getDate();
 const year = date.getFullYear();
-const hours = date.getHours()-12;//military time
 const minute = date.getMinutes();
 const sec = date.getSeconds();
 
+//Month number to string conversion
+let monthArr = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+];
+for (let i = 0; i < monthArr.length; i++) {
+    month = monthArr[monthInd];
+}
+
+//Hours military to standard conversion
+function milConv (hours) {
+    if (hours > 12) {
+        return hours - 12;
+    } else {
+        return hours;
+    }
+};
+
 
 const hourSpan = document.createElement('span');
-hourSpan.textContent = hours;
+hourSpan.textContent = milConv(milHours);
 document.getElementById('container').appendChild(hourSpan);
 
 const minSpan = document.createElement('span');
