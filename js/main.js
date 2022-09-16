@@ -1,25 +1,32 @@
 //Defining basic time variables
 function pullTime() {
     const date = new Date();
-    const milHours = date.getHours();
-    const minute = date.getMinutes();
-    const sec = date.getSeconds();
+    let hour = date.getHours();
+    if (hour < 10) {
+        hour = `0${hour}`
+    }
+    let minute = date.getMinutes();
+    if (minute < 10) {
+        minute = `0${minute}`;
+    };
+    let sec = date.getSeconds();
+    if (sec < 10) {
+        sec = `0${sec}`;
+    };
 
-    //Hours military to standard conversion and AM/PM extraction
+
+    //AM/PM extraction
     let amPm;
-    let hour;
-    if (milHours < 12) {
+    if (hour < 12) {
         amPm = "AM";
-        hour = milHours;
     } else {
         amPm = "PM";
-        hour = milHours - 12;
     };
     
     let timeSpan = document.getElementById('clock');
     timeSpan.textContent = `${hour}:${minute}:${sec} ${amPm}`;
 };
-setInterval(pullTime, 900);
+setInterval(pullTime, 500); //clock seems laggy even with 1000 ms
 
 //Alarm
 let setAlarm = document.querySelector('input');
@@ -35,12 +42,31 @@ function alarmMes () {
     document.body.appendChild(timeRec);
 }    
 
-let hourNow = new Date().getHours();
-let minNow = new Date().getMinutes();
+//Check alarm
 
-while (setAlarm.value === `{$hourNow}:{$minNow}`) {
-    alert('Wake Up');
+function checkAlarm () {
+    let alarmVal = setAlarm.value;
+    let alarmString = `${alarmVal}:00`;
+
+    let hourNow = new Date().getHours();
+        if (hourNow < 10) {
+            hourNow = `0${hourNow}`;
+        }
+    let minNow = new Date().getMinutes();
+        if (minNow < 10) {
+            minNow = `0${minNow}`;
+        }
+    let secNow = new Date().getSeconds();
+        if (secNow < 10) {
+            secNow = `0${secNow}`;
+        }
+    let alarmVer = `${hourNow}:${minNow}:${secNow}`;
+
+    if (alarmString === alarmVer) {
+        alert('Wake Up');
+    };
 };
+setInterval(checkAlarm, 1000);
 
 setAlarm.addEventListener('change', alarmMes);
 
