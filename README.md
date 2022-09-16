@@ -48,7 +48,7 @@ A notification once a particular time (hours, minutes, and seconds) are realized
     - seconds
         - Properties
             - perDay: 86,400
-    - alarm () *method*
+    - alarmSet () *method*
 
 Determing the current time in a digital clock format (Hours:Minutes:Seconds) and (Month-Day-Year) if applicable. 
 It should count up, incrementing the seconds and update every second without refreshing
@@ -59,19 +59,30 @@ Start the alarm when the difference between the current time and the time the al
 ---
 START:
 
-GET time from source
+FUNCTION pullTime
+    GET hours, minutes, seconds, day, month, year from Date constructor
 
-FOR every second in a minute
-    
-DISPLAY time
+    IF hours < 12
+        time is AM && military hours === standard hours
+    ELSE
+        time is PM && military hours - 12 hours === standard hours
+        
+    DISPLAY time
+ENDFUNCTION
 
-FUNCTION set alarm
-    Select alarm hour
-    Select AM/PM
-    Submit alarm request
-    WHILE alarm = set 
-        count down to time = alarm
-    ENDWHILE
+FUNCTION alarmMes
+    INPUT alarm hour && minute
+    OUTPUT time record
 END FUNCTION
+
+WHILE current time === alarm time
+    ALERT "wake up"
+ENDWHILE
+
+FOR index of month
+    RETURN abbreviation of month
+ENDFOR
+
+DISPLAY date
     
 //END PROGRAM
