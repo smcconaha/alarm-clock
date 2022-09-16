@@ -35,7 +35,10 @@ function alarmMes () {
     document.body.appendChild(timeRec);
 }    
 
-while (setAlarm.value === `{$new Date().getHours}:{$new Date().getMinutes}`) {
+let hourNow = new Date().getHours();
+let minNow = new Date().getMinutes();
+
+while (setAlarm.value === `{$hourNow}:{$minNow}`) {
     alert('Wake Up');
 };
 
