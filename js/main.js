@@ -1,5 +1,5 @@
 //Defining basic time variables
-function timePull() {
+function pullTime() {
     const date = new Date();
     const milHours = date.getHours();
     const minute = date.getMinutes();
@@ -15,31 +15,31 @@ function timePull() {
         amPm = "PM";
         hour = milHours - 12;
     };
-    let currentTime = `${hour}:${minute}:${sec} ${amPm}`;
     
     let timeSpan = document.getElementById('clock');
-    return timeSpan.textContent = currentTime;
+    timeSpan.textContent = `${hour}:${minute}:${sec} ${amPm}`;
 };
-setInterval(timePull, 1000);
-
-/*const alarm = document.getElementById('alarm');
-let contents = alarm.innerHTML;*/
+setInterval(pullTime, 900);
 
 //Alarm
-let setTime = document.getElementById('alarm');
-const btn = document.getElementById('btn');
-function setAlarm (time) {
-    if (setTime.value !== '') {
-        alert('Alarm set');
-    } else {
-        alert('Please set alarm');
-    }
-};
-btn.addEventListener('click',() => {
+let setAlarm = document.querySelector('input');
+
+function alarmMes () { 
+    let setTime = setAlarm.value; //***** Why not innerHTML?
     let timeRec = document.createElement('h5');
-    timeRec.textContent = `Alarm set for ${setTime}`;
+    if (setTime === '') {
+        timeRec.textContent = 'No alarm set';
+    }else{
+        timeRec.textContent = `Alarm set for ${setTime}`;
+    }
     document.body.appendChild(timeRec);
-})
+}    
+
+while (setAlarm.value === `{$new Date().getHours}:{$new Date().getMinutes}`) {
+    alert('Wake Up');
+};
+
+setAlarm.addEventListener('change', alarmMes);
 
 //Month, Day, Year
 const date = new Date();
