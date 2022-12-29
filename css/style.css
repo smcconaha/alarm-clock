@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
-.container {
+.container-fluid {
     font-family: 'Play', sans-serif;
     font-weight: 400;
+    background: url("./../imgs/pexels-pixabay-462023.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
 }
 
 card-title {
