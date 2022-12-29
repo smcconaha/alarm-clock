@@ -1,8 +1,17 @@
 //Defining basic time variables
 function pullTime() {
     const date = new Date();
+    let amPm;
+    if (hour < 12) {
+        amPm = "AM";
+    } else {
+        amPm = "PM";
+    };
     let hour = date.getHours();
-    if (hour < 10) {
+    if (hour > 12) {
+        hour -= 12;
+    }
+    if(hour.toString().length !== 2) {
         hour = `0${hour}`
     }
     let minute = date.getMinutes();
@@ -13,20 +22,11 @@ function pullTime() {
     if (sec < 10) {
         sec = `0${sec}`;
     };
-
-
-    //AM/PM extraction
-    let amPm;
-    if (hour < 12) {
-        amPm = "AM";
-    } else {
-        amPm = "PM";
-    };
     
     let timeSpan = document.getElementById('clock');
     timeSpan.textContent = `${hour}:${minute}:${sec} ${amPm}`;
 };
-setInterval(pullTime, 500); //clock seems laggy even with 1000 ms
+setInterval(pullTime, 500);
 
 //Alarm
 let setAlarm = document.querySelector('input');
