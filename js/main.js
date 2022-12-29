@@ -1,13 +1,15 @@
 //Defining basic time variables
 function pullTime() {
     const date = new Date();
+    let hour = date.getHours();
+    
     let amPm;
     if (hour < 12) {
         amPm = "AM";
     } else {
         amPm = "PM";
     };
-    let hour = date.getHours();
+
     if (hour > 12) {
         hour -= 12;
     }
@@ -32,12 +34,22 @@ setInterval(pullTime, 500);
 let setAlarm = document.querySelector('input');
 
 function alarmMes () { 
-    let setTime = setAlarm.value; //***** Why not innerHTML?
+    let setTime = setAlarm.value.split(':');
+    
+    let amPm;
+
+    console.log(setTime[0])
+    if (setTime[0] > 12) {
+        amPm = "PM";
+        setTime[0] -= 12;
+    } else {
+        amPm = "AM";
+    }
     let timeRec = document.createElement('h5');
     if (setTime === '') {
         timeRec.textContent = 'No alarm set';
     }else{
-        timeRec.textContent = `Alarm set for ${setTime}`;
+        timeRec.textContent = `Alarm set for ${setTime[0]}:${setTime[1]} ${amPm}`;
     }
     document.body.appendChild(timeRec);
 }    
