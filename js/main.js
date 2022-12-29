@@ -109,4 +109,4 @@ for (let i = 0; i < monthArr.length; i++) {
 
 const dateSpan = document.createElement('span');
 dateSpan.textContent = `${month} ${day} ${year}`;
-document.getElementById('container').appendChild(dateSpan);
+document.getElementById('clockcontent').appendChild(dateSpan);
