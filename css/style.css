@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
 
 .container-fluid {
-    font-family: 'Play', sans-serif;
-    font-weight: 400;
     background: url("./../imgs/pexels-pixabay-462023.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    height: 90vh;
+    height: 100vh;
 }
 
-card-title {
-    font-weight: 700;
+.card-title {
+    font-family: 'Great Vibes', cursive;
 }

@@ -27,6 +27,7 @@ function pullTime() {
     
     let timeSpan = document.getElementById('clock');
     timeSpan.textContent = `${hour}:${minute}:${sec} ${amPm}`;
+    timeSpan.className = "fs-2 text-center";
 };
 setInterval(pullTime, 500);
 
@@ -107,6 +108,7 @@ for (let i = 0; i < monthArr.length; i++) {
     month = monthArr[monthInd];
 }
 
-const dateSpan = document.createElement('span');
+const dateSpan = document.createElement('div');
 dateSpan.textContent = `${month} ${day} ${year}`;
 document.getElementById('clockcontent').appendChild(dateSpan);
+dateSpan.className = "fs-2 text-center";
