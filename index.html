@@ -13,19 +13,20 @@
 </head>
 <body>
     <div class="container-fluid py-5">
-        <div class="row  justify-content-center">
+        <div class="row  justify-content-center m-5" id="row">
             <div class="col-md-6">
-                <div class="card opacity-75 bg-dark text-white">
+                <div class="card opacity-75 bg-dark text-white p-4">
                     <div class="card-body">
                         <h5 class="card-title fs-1 text-center">Alarm Clock</h5>
                         <div id="clockcontent">
                             <div id="clock"></div>
                         </div>
+                    </div>
                         <br />
                         <p class="card-text">Please Select Your Alarm Time</p>
-                    <form>
+                    <form id="alarm">
                         <label for="alarm">Select alarm time </label>
-                        <input type="time" name="alarm" id="alarm">
+                        <input type="time" name="alarm">
                     </form>
                 </div>
             </div>

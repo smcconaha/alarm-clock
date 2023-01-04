@@ -46,13 +46,14 @@ function alarmMes () {
     } else {
         amPm = "AM";
     }
-    let timeRec = document.createElement('h5');
+    let timeRec = document.createElement('div');
     if (setTime === '') {
         timeRec.textContent = 'No alarm set';
     }else{
-        timeRec.textContent = `Alarm set for ${setTime[0]}:${setTime[1]} ${amPm}`;
+        timeRec.textContent = `Your alarm has been set for ${setTime[0]}:${setTime[1]} ${amPm}`;
     }
-    document.body.appendChild(timeRec);
+    timeRec.className = "mt-4"
+    document.getElementById('alarm').appendChild(timeRec);
 }    
 
 //Check alarm
@@ -76,7 +77,10 @@ function checkAlarm () {
     let alarmVer = `${hourNow}:${minNow}:${secNow}`;
 
     if (alarmString === alarmVer) {
-        alert('Wake Up');
+        const wakeMes = document.createElement('h1');
+        wakeMes.textContent = 'Alarm: time to get moving!';
+        wakeMes.className = "wakeMes text-center fs-1 text-danger bg-dark opacity-75 rounded-pill";
+        document.getElementById('row').appendChild(wakeMes);
     };
 };
 setInterval(checkAlarm, 1000);
@@ -110,5 +114,5 @@ for (let i = 0; i < monthArr.length; i++) {
 
 const dateSpan = document.createElement('div');
 dateSpan.textContent = `${month} ${day} ${year}`;
-document.getElementById('clockcontent').appendChild(dateSpan);
 dateSpan.className = "fs-2 text-center";
+document.getElementById('clockcontent').appendChild(dateSpan);
