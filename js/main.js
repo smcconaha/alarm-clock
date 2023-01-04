@@ -2,7 +2,18 @@
 function pullTime() {
     const date = new Date();
     let hour = date.getHours();
-    if (hour < 10) {
+    
+    let amPm;
+    if (hour < 12) {
+        amPm = "AM";
+    } else {
+        amPm = "PM";
+    };
+
+    if (hour > 12) {
+        hour -= 12;
+    }
+    if(hour.toString().length !== 2) {
         hour = `0${hour}`
     }
     let minute = date.getMinutes();
@@ -13,33 +24,36 @@ function pullTime() {
     if (sec < 10) {
         sec = `0${sec}`;
     };
-
-
-    //AM/PM extraction
-    let amPm;
-    if (hour < 12) {
-        amPm = "AM";
-    } else {
-        amPm = "PM";
-    };
     
     let timeSpan = document.getElementById('clock');
     timeSpan.textContent = `${hour}:${minute}:${sec} ${amPm}`;
+    timeSpan.className = "fs-2 text-center";
 };
-setInterval(pullTime, 500); //clock seems laggy even with 1000 ms
+setInterval(pullTime, 500);
 
 //Alarm
 let setAlarm = document.querySelector('input');
 
 function alarmMes () { 
-    let setTime = setAlarm.value; //***** Why not innerHTML?
-    let timeRec = document.createElement('h5');
+    let setTime = setAlarm.value.split(':');
+    
+    let amPm;
+
+    console.log(setTime[0])
+    if (setTime[0] > 12) {
+        amPm = "PM";
+        setTime[0] -= 12;
+    } else {
+        amPm = "AM";
+    }
+    let timeRec = document.createElement('div');
     if (setTime === '') {
         timeRec.textContent = 'No alarm set';
     }else{
-        timeRec.textContent = `Alarm set for ${setTime}`;
+        timeRec.textContent = `Your alarm has been set for ${setTime[0]}:${setTime[1]} ${amPm}`;
     }
-    document.body.appendChild(timeRec);
+    timeRec.className = "mt-4"
+    document.getElementById('alarm').appendChild(timeRec);
 }    
 
 //Check alarm
@@ -63,7 +77,10 @@ function checkAlarm () {
     let alarmVer = `${hourNow}:${minNow}:${secNow}`;
 
     if (alarmString === alarmVer) {
-        alert('Wake Up');
+        const wakeMes = document.createElement('h1');
+        wakeMes.textContent = 'Alarm: time to get moving!';
+        wakeMes.className = "wakeMes text-center fs-1 text-danger bg-dark opacity-75 rounded-pill";
+        document.getElementById('row').appendChild(wakeMes);
     };
 };
 setInterval(checkAlarm, 1000);
@@ -95,6 +112,7 @@ for (let i = 0; i < monthArr.length; i++) {
     month = monthArr[monthInd];
 }
 
-const dateSpan = document.createElement('span');
+const dateSpan = document.createElement('div');
 dateSpan.textContent = `${month} ${day} ${year}`;
-document.getElementById('container').appendChild(dateSpan);
+dateSpan.className = "fs-2 text-center";
+document.getElementById('clockcontent').appendChild(dateSpan);
